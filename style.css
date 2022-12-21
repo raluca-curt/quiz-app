@@ -1,0 +1,29 @@
+:root { 
+    --bg-color: rgb(236, 245, 255);
+    --font-size: 1.2rem;
+}
+  
+* {
+    box-sizing: border-box;
+    font-family: Helvetica, sans-serif;
+    font-size: var(--font-size);
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: var(--bg-color);
+}
+
+#main {
+    min-width: 100vw;
+    height: 100vh;
+}
+
+#content {
+    max-width: 375px;
+    width: 100%;
+    height: 100%;
+}
+
+a:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
