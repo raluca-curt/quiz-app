@@ -13,8 +13,22 @@
   </head>
   <body>
     <div class="container text-center d-flex align-content-center" id="main">
-        <div class="container d-flex flex-column justify-content-center align-content-center text-start" id="content">
-            <div class="container d-flex flex-column gap-3 p-0" id="game">
+        <div class="container d-flex flex-column justify-content-evenly align-content-center text-start" id="content">
+
+            <!-- Header -->
+            <div class="container m-o p-0 pt-4 d-flex justify-content-between gap-5" id="header">
+                <!-- Question counter -->
+                <div class="container m-0 p-0 d-flex justify-content-start align-items-center flex-wrap">
+                    <p id="question-counter"></p>
+                </div>
+                <!-- Score -->
+                <div class="container m-0 p-0 text-end">
+                    <p id="score"></p>
+                </div>
+            </div>
+
+            <!-- Game -->
+            <div class="container d-flex flex-column gap-3 p-0 pb-4" id="game">
                 <!-- Question -->
                 <h1 id="question"></h1>
                 <!-- First choice -->

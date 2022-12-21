@@ -5,12 +5,20 @@ let questions = []
 let availableQuestions = [];
 let displayedQuestions = 0;
 let currentQuestion = 0;
+let userScore = 0;
 
+// Get array of the four choices
 let choices = Array.from(document.querySelectorAll('.choice-text'));
+
+// Get user score from document
+let score = document.getElementById('score');
+
+// Get current question from document
+let questionCounter = document.getElementById('question-counter')
 
 // Fetch questions
 document.addEventListener('DOMContentLoaded', () => {
-    getJSON = async () => {
+    getData = async () => {
         return await fetch(`https://opentdb.com/api.php?amount=${MAX_QUESTIONS}&type=multiple`)
             .then(res => res.json())
             .then(fetchedQuestions => {
@@ -44,12 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(err => console.log(err));
     }
-    getJSON();
-    // once questions are fetched, display a random question from questions
-    // at the end delete current question from questions
+    getData();
+
+    // Reset stats for game start
     startGame = () => {
         availableQuestions = [...questions];
         displayedQuestions = 0;
+        userScore = 0;
+
+        // Display questions track
+        questionCounter.innerText = `Question: ${displayedQuestions}/${questions.length}`;
+
+        // Display score
+        score.innerText = `Score: ${userScore}`;
 
         // Start the game by displaying a question
         getQuestion();
@@ -63,6 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Keep track of how many questions we've displayed so far
         displayedQuestions++;
+
+        // Update questions track
+        questionCounter.innerText = `Question: ${displayedQuestions}/${questions.length}`;
 
         // Generate random index
         const index = Math.floor(Math.random() * availableQuestions.length);
@@ -97,7 +115,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const userChoiceId = userChoice.id;
 
             // Check if user choice id matches correct answer
-            const checkAnswer = (userChoiceId === currentQuestion.answerIndex) ? 'correct' : 'incorrect';
+            const checkAnswer = (userChoiceId == currentQuestion.answerIndex) ? 'correct' : 'incorrect';
+
+            if ('correct') {
+                userScore++;
+                // Update score
+                score.innerText = `Score: ${userScore}`;
+            } 
 
             // Add class 'correct' or 'incorrect' to parent
             userChoice.parentElement.classList.add(checkAnswer);
