@@ -16,3 +16,10 @@
 .choice-text {
     background-color: transparent;
 }
+
+.correct {
+    background-color: green;
+}
+.incorrect {
+    background-color: red;
+}
