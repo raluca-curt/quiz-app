@@ -76,7 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
     getQuestion = () => {
         // If this is the last question
         if (currentQuestion >= MAX_QUESTIONS || availableQuestions.length === 0) {
-            return window.location.assign('./index.html');
+            // Save score to localStorage
+            localStorage.setItem('Score', userScore);
+            
+            // Then redirect to end page
+            return window.location.assign('./end.html');
         } 
 
         // Keep track of how many questions we've displayed so far

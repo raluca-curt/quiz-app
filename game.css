@@ -29,7 +29,7 @@
     background-color: red;
 }
 
-#score {
+#score, #final-score {
     font-size: 2.5rem;
     display: block;
     color: var(--accent-color);
