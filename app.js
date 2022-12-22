@@ -1,7 +1,7 @@
 // Set maximum number of questions
 const MAX_QUESTIONS = 5;
 // Store current game's questions
-let questions = []
+let questions = [];
 let availableQuestions = [];
 let displayedQuestions = 0;
 let currentQuestion = 0;
@@ -12,18 +12,24 @@ let acceptingAnswer = false;
 let choices = Array.from(document.querySelectorAll('.choice-text'));
 
 // Get user score from document
-let score = document.getElementById('score');
+const score = document.getElementById('score');
 
 // Get current question from document
-let questionCounter = document.getElementById('question-counter')
+const questionCounter = document.getElementById('question-counter');
 
 // Get progress bar from document
-let progressBar = document.getElementsByClassName('progress-bar')[0]
+const progressBar = document.getElementsByClassName('progress-bar')[0];
+
+// Get loader from document
+const loader = document.getElementById('loader');
+
+// Get content from document
+const content = document.getElementById('content');
 
 // Fetch questions
 document.addEventListener('DOMContentLoaded', () => {
     getData = async () => {
-        return await fetch(`https://opentdb.com/api.php?amount=${MAX_QUESTIONS}&type=multiple`)
+        return await fetch(`https://opentdb.com/api.php?amount=${MAX_QUESTIONS}&type=multiple&category=9&difficulty=easy`)
             .then(res => res.json())
             .then(fetchedQuestions => {
                 questions = fetchedQuestions.results.map(question => {
@@ -74,9 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Start the game by displaying a question
         getQuestion();
 
-        // Remove loader once question is ready to be displayed
-        document.getElementById('content').classList.remove('hidden');
-        document.getElementById('loader').classList.add('hidden');
+        // Remove hidden class from content once question is ready to be displayed
+        content.classList.remove('hidden');
+        // And add hidden class to loader
+        loader.classList.add('hidden');
     }
 
     getQuestion = () => {
@@ -94,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update progress bar
         if (displayedQuestions > 1) {
+            // Add % to progress bar when next question loads
             progressBar.style.width = (parseInt(progressBar.style.width) + 100/MAX_QUESTIONS) + '%';
         }
         
