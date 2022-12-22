@@ -27,6 +27,6 @@ form.addEventListener('submit', (event) => {
         localStorage.setItem('scoreList', JSON.stringify(scoreList));
 
         // Then redirect to home page
-        window.location.assign('/');
+        window.location.assign('./');
     }
 })
