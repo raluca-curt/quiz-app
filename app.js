@@ -6,6 +6,7 @@ let availableQuestions = [];
 let displayedQuestions = 0;
 let currentQuestion = 0;
 let userScore = 0;
+let acceptingAnswer = false;
 
 // Get array of the four choices
 let choices = Array.from(document.querySelectorAll('.choice-text'));
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         availableQuestions = [...questions];
         displayedQuestions = 0;
         userScore = 0;
+        acceptingAnswer = false;
 
         // Display questions track
         questionCounter.innerText = `${displayedQuestions}/${questions.length}`;
@@ -114,12 +116,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Delete the used question from availableQuestion
         availableQuestions.splice(index, 1);
+
+        // Accept answers once question finishes loading
+        acceptingAnswer = true;
     }
 
 
     // Record user's answer
     choices.forEach(choice => {
         choice.addEventListener('click', (e) => {
+            // Make sure the app accepts answers before letting the user click on choices
+            if (acceptingAnswer == false) return;
+
+            // Once the answer is registered, put accept answers on hold
+            acceptingAnswer = false;
+
             // Get user choice
             const userChoice = e.target;
 
