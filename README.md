@@ -1,5 +1,5 @@
 # Quiz App
-### Deployment: 
+### Deployment: https://raluca-curt.github.io/quiz-app/
 
 ## Technologies
 - Vanilla JS
