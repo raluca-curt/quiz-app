@@ -16,6 +16,9 @@ let score = document.getElementById('score');
 // Get current question from document
 let questionCounter = document.getElementById('question-counter')
 
+// Get progress bar from document
+let progressBar = document.getElementsByClassName('progress-bar')[0]
+
 // Fetch questions
 document.addEventListener('DOMContentLoaded', () => {
     getData = async () => {
@@ -61,10 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
         userScore = 0;
 
         // Display questions track
-        questionCounter.innerText = `Question: ${displayedQuestions}/${questions.length}`;
+        questionCounter.innerText = `${displayedQuestions}/${questions.length}`;
 
         // Display score
-        score.innerText = `Score: ${userScore}`;
+        score.innerText = userScore;
 
         // Start the game by displaying a question
         getQuestion();
@@ -79,8 +82,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Keep track of how many questions we've displayed so far
         displayedQuestions++;
 
+        // Update progress bar
+        if (displayedQuestions > 1) {
+            progressBar.style.width = (parseInt(progressBar.style.width) + 100/MAX_QUESTIONS) + '%';
+        }
+        
         // Update questions track
-        questionCounter.innerText = `Question: ${displayedQuestions}/${questions.length}`;
+        questionCounter.innerText = `${displayedQuestions}/${questions.length}`;
 
         // Generate random index
         const index = Math.floor(Math.random() * availableQuestions.length);
@@ -117,10 +125,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Check if user choice id matches correct answer
             const checkAnswer = (userChoiceId == currentQuestion.answerIndex) ? 'correct' : 'incorrect';
 
-            if ('correct') {
+            if (checkAnswer === 'correct') {
                 userScore++;
                 // Update score
-                score.innerText = `Score: ${userScore}`;
+                score.innerText = userScore;
             } 
 
             // Add class 'correct' or 'incorrect' to parent

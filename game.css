@@ -28,3 +28,17 @@
 .incorrect {
     background-color: red;
 }
+
+#score {
+    font-size: 2.5rem;
+    display: block;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.progress {
+    min-width: 100px;
+    max-width: 300px;
+    width: 35vw;
+    display: block;
+}
