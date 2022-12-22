@@ -73,6 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Start the game by displaying a question
         getQuestion();
+
+        // Remove loader once question is ready to be displayed
+        document.getElementById('content').classList.remove('hidden');
+        document.getElementById('loader').classList.add('hidden');
     }
 
     getQuestion = () => {
@@ -156,14 +160,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1000)
         })
     })
-    
-
-
-
-
-
-
-
-
-
 })

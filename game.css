@@ -42,3 +42,9 @@
     width: 35vw;
     display: block;
 }
+
+.hidden {
+    position: absolute;
+    visibility:hidden;
+    display:none;
+}
