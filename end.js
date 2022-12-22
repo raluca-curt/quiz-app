@@ -17,7 +17,7 @@ form.addEventListener('submit', (event) => {
         // Store username + score
         const score = {
             username: username.value,
-            score: finalScore.innerText
+            score: parseInt(finalScore.innerText)
         }
 
         // Add them to list
